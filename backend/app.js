@@ -33,6 +33,8 @@ app.use(express.static(path.join(__dirname, "public")));
 // ROUTES
 app.use("/", indexRouter);
 app.use("/user", userRouter);
+app.use("/posts", postRouter);
+app.use("/comments", commentRouter);
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 

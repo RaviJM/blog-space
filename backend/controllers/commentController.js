@@ -1,3 +1,4 @@
+// controllers/commentController.js
 const User = require("../models/User");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
@@ -6,7 +7,7 @@ const Comment = require("../models/Comment");
 exports.createComment = async (req, res) => {
   try {
     const { content } = req.body;
-    const userId = req.user.id;
+    const userId = req.user.userId;
     const postId = req.params.postId;
 
     const newComment = new Comment({
@@ -22,7 +23,7 @@ exports.createComment = async (req, res) => {
       $push: { comments: newComment._id },
     });
 
-    const allComments = Comment.find({ postId: postId })
+    const allComments = await Comment.find({ postId: postId })
       .populate("userId", "username")
       .sort({ createdAt: -1 });
 
@@ -35,23 +36,23 @@ exports.createComment = async (req, res) => {
 // sends all comments after updating the comment
 exports.updateComment = async (req, res) => {
   try {
-    const { content } = req.body;
     const commentId = req.params.commentId;
+    const { content } = req.body;
 
-    const updatedComment = Comment.findByIdAndUpdate(
+    const updatedComment = await Comment.findByIdAndUpdate(
       commentId,
-      { content, updatedAt: new Date() },
+      { content },
       { new: true, runValidators: true }
     );
 
     if (!updatedComment) {
-      res.status(404).json({ message: "Comment not found" });
+      return res.status(404).json({ message: "Comment not found" });
     }
 
     // find the postId from the comment (so that you can fetch all comments for that postId)
     const postId = updatedComment.postId;
 
-    const allComments = Comment.find({ postId: postId })
+    const allComments = await Comment.find({ postId: postId })
       .populate("userId", "username")
       .sort({ createdAt: -1 });
 
@@ -67,10 +68,10 @@ exports.deleteComment = async (req, res) => {
   try {
     const commentId = req.params.commentId;
 
-    const deletedComment = Comment.findByIdAndDelete(commentId);
+    const deletedComment = await Comment.findByIdAndDelete(commentId);
 
     if (!deletedComment) {
-      res.status(404).json({ message: `Comment not found` });
+      return res.status(404).json({ message: `Comment not found` });
     }
 
     //remove the comment from the post's comment array
@@ -95,7 +96,7 @@ exports.getCommentsOfPost = async (req, res) => {
   try {
     const postId = req.params.postId;
 
-    const allComments = Comment.find({ postId: postId })
+    const allComments = await Comment.find({ postId: postId })
       .populate("userId", "username")
       .sort({ createdAt: -1 });
 
