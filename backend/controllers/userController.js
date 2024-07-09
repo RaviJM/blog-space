@@ -20,7 +20,7 @@ exports.signup = async (req, res) => {
     user = new User({
       username,
       email,
-      hashedPassword,
+      password: hashedPassword,
     });
 
     await user.save();
@@ -37,22 +37,22 @@ exports.login = async (req, res) => {
     const { username, password } = req.body;
 
     // check if user exists
-    const user = User.findOne({ username });
+    const user = await User.findOne({ username });
 
     if (!user) {
-      res.status(400).json({ message: `Invalid Credentials` });
+      return res.status(400).json({ message: `Invalid Credentials` });
     }
 
     // check password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      res.status(400).json({ message: `Invalid Credentials` });
+      return res.status(400).json({ message: `Invalid Credentials` });
     }
 
     // Generate JWT token
     const token = jwt.sign(
-      { userId: user._id, username: user.username },
+      { userId: user._id, username: user.username, email: user.email },
       process.env.JWT_SECRET_KEY
     );
 
@@ -65,6 +65,6 @@ exports.login = async (req, res) => {
 
 // LOGOUT
 exports.logout = async (req, res) => {
-  res.status(200).json({ message: `Logged out successfully` });
+  return res.status(200).json({ message: `Logged out successfully` });
   // we still have to remove the token from the local storage of frontend
 };

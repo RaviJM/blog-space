@@ -6,6 +6,9 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const postRouter = require("./routes/postRouter");
+const commentRouter = require("./routes/commentRouter");
+const userRouter = require("./routes/userRouter");
 
 var app = express();
 
@@ -29,6 +32,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // ROUTES
 app.use("/", indexRouter);
+app.use("/user", userRouter);
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 

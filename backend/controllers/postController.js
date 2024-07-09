@@ -13,7 +13,6 @@ exports.getAllPosts = async (req, res) => {
       .select("title content createdAt likes");
 
     res.status(200).json({ posts });
-    res.status;
   } catch (err) {
     res
       .status(500)
@@ -41,7 +40,7 @@ exports.getPostById = async (req, res) => {
 exports.createPost = async (req, res) => {
   try {
     const { title, content } = req.body;
-    const authorId = req.user.id;
+    const authorId = req.user.userId;
 
     const newPost = new Post({
       title,
@@ -53,7 +52,7 @@ exports.createPost = async (req, res) => {
 
     const allPosts = await Post.find();
 
-    res.status(201), json({ allPosts });
+    res.status(201).json({ allPosts });
   } catch (err) {
     res
       .status(500)
