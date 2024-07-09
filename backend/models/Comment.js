@@ -13,4 +13,12 @@ const commentSchema = new Schema(
   { timestamps: true }
 );
 
+commentSchema.virtual("url").get(function () {
+  return `/comments/${this._id}`;
+});
+
+commentSchema.virtual("justId").get(function () {
+  return `${this._id}`;
+});
+
 module.exports = mongoose.model("Comment", commentSchema);

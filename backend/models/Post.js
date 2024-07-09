@@ -18,4 +18,12 @@ const postSchema = new Schema(
   { timestamps: true }
 );
 
+postSchema.virtual("url").get(function () {
+  return `/posts/${this._id}`;
+});
+
+postSchema.virtual("justId").get(function () {
+  return `${this._id}`;
+});
+
 module.exports = mongoose.model("Posts", postSchema);
