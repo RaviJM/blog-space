@@ -7,6 +7,14 @@ function AboutPage() {
       <div>
         <p>Hey Guys! I'm Ravi Makwana.</p>
         <p>
+          I'm gonna share a <i>feature</i> of this website:
+        </p>
+        <p>
+          The people who have an account as 'users' do not have access to the
+          admin portal. However, the admins can still access the user website
+          from their admin account! Sounds <i>cool</i> doesn't it?
+        </p>
+        <p>
           I made this website for personal blogging about topics that might
           interest people around the world.
         </p>

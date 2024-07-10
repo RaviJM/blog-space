@@ -66,6 +66,7 @@ const Navbar = () => {
               <>
                 <p>Username: {userInfo.username}</p>
                 <p>Email: {userInfo.email}</p>
+                <p>Account-type: {userInfo.role}</p>
                 <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
