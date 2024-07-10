@@ -81,6 +81,10 @@ const SignupPage = () => {
       <p>
         Already have an account? <Link to="/login">Login</Link>
       </p>
+      <p>Or</p>
+      <p>
+        Visit as Guest? <Link to="/homepage">Guest</Link>
+      </p>
     </div>
   );
 };

@@ -58,6 +58,10 @@ const LoginPage = () => {
       <p>
         New user? <Link to="/signup">Signup</Link>
       </p>
+      <p>Or</p>
+      <p>
+        Visit as Guest? <Link to="/homepage">Guest</Link>
+      </p>
     </div>
   );
 };
