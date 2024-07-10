@@ -7,7 +7,7 @@ require("dotenv").config();
 // SIGNUP
 exports.signup = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
 
     // checking if user already exists
     let user = await User.findOne({ username });
@@ -21,6 +21,7 @@ exports.signup = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      role,
     });
 
     await user.save();

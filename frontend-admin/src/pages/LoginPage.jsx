@@ -21,10 +21,32 @@ const LoginPage = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
 
-      console.log("Login success:", res.data);
+      // check if the person has a creater account or not by fetching their details(if not, that means they are just a user, not author, so deny access)
+      // get the person's details
+      const userId = localStorage.getItem("userId");
+      axios
+        .get(`http://localhost:3000/user/${userId}`)
+        .then((response) => {
+          const role = response.data.userDetails.role;
+          if (role === "user") {
+            // deny access
+            // delete JWT token from local storage
+            localStorage.removeItem("token");
+            localStorage.removeItem("userId");
+            alert("You do not have an Admin account!");
 
-      //   redirect to HomePage
-      navigate("/homepage");
+            // clear username and password fields
+            setForm({ username: "", password: "" });
+            return;
+          } else {
+            // allow login
+            //   redirect to HomePage
+            navigate("/homepage");
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user info", error);
+        });
     } catch (error) {
       console.error("Login failed:", error);
       setForm({ ...form, password: "" });

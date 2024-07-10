@@ -12,6 +12,7 @@ const SignupPage = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    role: "admin",
   });
 
   const handleChange = (e) => {

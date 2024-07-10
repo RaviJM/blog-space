@@ -21,8 +21,6 @@ const LoginPage = () => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
 
-      console.log("Login success:", res.data);
-
       //   redirect to HomePage
       navigate("/homepage");
     } catch (error) {
