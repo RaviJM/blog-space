@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import PostPage from "./pages/PostPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/posts/:postId" element={<PostPage />} />
+          <Route path="/aboutpage" element={<AboutPage />} />
         </Routes>
       </div>
     </Router>

@@ -13,21 +13,14 @@ const RegistrationPage = () => {
     navigate("/signup");
   };
 
-  const handleGuestClick = () => {
-    navigate("/homepage");
-  };
-
   return (
     <div style={styles.container}>
-      <h1>BLOG SPACE</h1>
+      <h1>BLOG SPACE - Creater Zone</h1>
       <button style={styles.button} onClick={handleLoginClick}>
-        Login
+        Author Login
       </button>
       <button style={styles.button} onClick={handleSignupClick}>
-        Signup
-      </button>
-      <button style={styles.button} onClick={handleGuestClick}>
-        Continue as Guest
+        Author Signup
       </button>
     </div>
   );
