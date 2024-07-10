@@ -68,3 +68,18 @@ exports.logout = async (req, res) => {
   return res.status(200).json({ message: `Logged out successfully` });
   // we still have to remove the token from the local storage of frontend
 };
+
+exports.getUserDetails = async (req, res) => {
+  try {
+    const userDetails = await User.findOne({ _id: req.params.userId });
+
+    if (userDetails) {
+      return res.status(200).json({ userDetails: userDetails });
+    }
+    return res.status(400).json({ message: "User not found" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: `Error fetching user details: ${err.message}` });
+  }
+};

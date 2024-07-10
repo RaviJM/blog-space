@@ -9,6 +9,7 @@ require("dotenv").config();
 const postRouter = require("./routes/postRouter");
 const commentRouter = require("./routes/commentRouter");
 const userRouter = require("./routes/userRouter");
+const cors = require("cors");
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
