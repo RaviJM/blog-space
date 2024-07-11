@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
   return (
-    <Link to="">
+    <Link to={`/posts/${[post._id]}`}>
       <button style={{ border: "solid black" }}>
         <h3>{post.title}</h3>
         <p>{post.createdAt}</p>
