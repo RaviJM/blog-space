@@ -4,12 +4,44 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 const PostPage = () => {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
   // const [comment, setComment] = useState("");
   // const [comments, setComments] = useState([]);
+  const navigate = useNavigate();
+
+  async function handleDeletePost() {
+    // for authorization purposes
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
+    if (!token || !userId) {
+      // if they aren't logged in
+      navigate("/login");
+      return;
+    }
+
+    const cnf = await confirm("Are you sure you want to delete the post?");
+    if (cnf) {
+      const res = await axios.delete(
+        `http://localhost:3000/posts/deletePost/${postId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (res.status === 404) {
+        alert("Post not found!");
+      } else if (res.status === 500) {
+        alert("Error deleting post!");
+      } else {
+        alert("Post Deleted Successfully");
+        navigate("/homepage");
+      }
+    }
+    return;
+  }
 
   useEffect(() => {
     const fetchPost = async () => {
