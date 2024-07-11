@@ -10,6 +10,9 @@ const PostPage = () => {
   const { postId } = useParams();
   const [post, setPost] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const stateType = "update"; //used for update post button
+
   // const [comment, setComment] = useState("");
   // const [comments, setComments] = useState([]);
 
@@ -28,7 +31,7 @@ const PostPage = () => {
       return;
     }
 
-    const cnf = await confirm("Are you sure you want to delete the post?");
+    const cnf = confirm("Are you sure you want to delete the post?");
     if (cnf) {
       const res = await axios.delete(
         `http://localhost:3000/posts/deletePost/${postId}`,
@@ -45,6 +48,17 @@ const PostPage = () => {
       }
     }
     return;
+  }
+
+  async function handleUpdatePost() {
+    navigate("/homepage/createPost", {
+      state: {
+        stateType: stateType,
+        title: post.title,
+        content: post.content,
+        postId: postId,
+      },
+    });
   }
 
   useEffect(() => {
@@ -103,6 +117,7 @@ const PostPage = () => {
       {post && (
         <div>
           <button onClick={handleDeletePost}>Delete Post</button>
+          <button onClick={handleUpdatePost}>Update Post</button>
           <h2>{post.title}</h2>
           <p>{post.content}</p>
           <p>{post.createdAt}</p>

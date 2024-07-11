@@ -10,6 +10,8 @@ const HomePage = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const stateType = "create"; //used for create post button
+
   useEffect(() => {
     async function fetchPosts() {
       const res = await axios.get("http://localhost:3000/posts");
@@ -25,7 +27,7 @@ const HomePage = () => {
     <div>
       <Navbar />
       <h2>Home Page</h2>
-      <Link to="/homepage/createPost">
+      <Link to="/homepage/createPost" state={stateType}>
         <button>Create Post</button>
       </Link>
 
