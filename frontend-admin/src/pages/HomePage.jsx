@@ -4,31 +4,22 @@ import axios from "axios";
 import PostCard from "../components/postCard/PostCard";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     try {
-  //       const response = await axios.get("/api/posts");
-  //       setPosts(response.data.posts);
-  //     } catch (error) {
-  //       console.error("Error fetching posts:", error);
-  //     }
-  //   };
-  //   fetchPosts();
-  // }, []);
+  useEffect(() => {
+    console.log("Hey");
+  }, [posts]);
 
   return (
     <div>
       <Navbar />
-      <h2>Home</h2>
-      {/* <div>
-        {posts.map((post) => (
-          <PostCard key={post._id} post={post} />
-        ))}
-      </div> */}
+      <h2>Home Page</h2>
+      <Link to="/homepage/createPost">
+        <button>Create Post</button>
+      </Link>
       <Footer />
     </div>
   );

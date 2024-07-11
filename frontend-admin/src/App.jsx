@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import PostPage from "./pages/PostPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import AboutPage from "./pages/AboutPage";
+import AddPostPage from "./pages/AddPostPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/homepage" element={<HomePage />} />
+          <Route path="/homepage/createPost" element={<AddPostPage />} />
           <Route path="/posts/:postId" element={<PostPage />} />
           <Route path="/aboutpage" element={<AboutPage />} />
         </Routes>

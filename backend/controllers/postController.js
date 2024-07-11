@@ -40,7 +40,8 @@ exports.getPostById = async (req, res) => {
 exports.createPost = async (req, res) => {
   try {
     const { title, content } = req.body;
-    const authorId = req.user.userId;
+
+    authorId = req.user.userId;
 
     const newPost = new Post({
       title,

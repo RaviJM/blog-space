@@ -48,9 +48,9 @@ const LoginPage = () => {
           console.error("Failed to fetch user info", error);
         });
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Something went wrong:", error);
       setForm({ ...form, password: "" });
-      alert("Invalid Credentials");
+      alert("Invalid Credentials or Server down");
     }
   };
 
