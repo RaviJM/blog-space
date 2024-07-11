@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const PostPage = () => {
   const { postId } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   // const [comment, setComment] = useState("");
   // const [comments, setComments] = useState([]);
 
@@ -53,6 +54,7 @@ const PostPage = () => {
           `http://localhost:3000/posts/${postId}`
         );
         setPost(response.data);
+        setIsLoading(false);
 
         // set likesArray
         if (post) {
@@ -93,20 +95,24 @@ const PostPage = () => {
   //   }
   // };
 
-  return post ? (
+  return (
     <div>
       <Navbar />
-      <button onClick={handleDeletePost}>Delete Post</button>
-      <h2>{post.title}</h2>
-      <p>{post.content}</p>
-      <p>{post.createdAt}</p>
-      <p>{post.updatedAt}</p>
-      <p>Likes: {likesArray.length}</p>
+
+      {isLoading && <p>Loading...</p>}
+      {post && (
+        <div>
+          <button onClick={handleDeletePost}>Delete Post</button>
+          <h2>{post.title}</h2>
+          <p>{post.content}</p>
+          <p>{post.createdAt}</p>
+          <p>{post.updatedAt}</p>
+          <p>Likes: {likesArray.length}</p>
+        </div>
+      )}
 
       <Footer />
     </div>
-  ) : (
-    <p>Loading...</p>
   );
 };
 

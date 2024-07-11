@@ -30,11 +30,15 @@ const HomePage = () => {
       </Link>
 
       {isLoading && <p>Loading...</p>}
-      <div className="posts-container">
-        {posts.map((post) => {
-          return <PostCard key={post._id} post={post} />;
-        })}
-      </div>
+
+      {posts && (
+        <div className="posts-container">
+          {posts.map((post) => {
+            return <PostCard key={post._id} post={post} />;
+          })}
+        </div>
+      )}
+
       <Footer />
     </div>
   );
