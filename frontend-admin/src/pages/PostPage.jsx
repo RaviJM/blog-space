@@ -11,6 +11,9 @@ const PostPage = () => {
   const [post, setPost] = useState(null);
   // const [comment, setComment] = useState("");
   // const [comments, setComments] = useState([]);
+
+  const [likesArray, setLikesArray] = useState([]);
+
   const navigate = useNavigate();
 
   async function handleDeletePost() {
@@ -50,6 +53,14 @@ const PostPage = () => {
           `http://localhost:3000/posts/${postId}`
         );
         setPost(response.data);
+
+        // set likesArray
+        if (post) {
+          const likesObject = post.likes;
+          const likesArray = Object.keys(likesObject);
+          setLikesArray(likesArray);
+        }
+
         // const commentsResponse = await axios.get(`/api/comments/${postId}`);
         // setComments(commentsResponse.data.allComments);
       } catch (error) {
@@ -57,7 +68,7 @@ const PostPage = () => {
       }
     };
     fetchPost();
-  }, [postId]);
+  }, [postId, likesArray, post]);
 
   // const handleLike = async () => {
   //   try {
@@ -90,6 +101,8 @@ const PostPage = () => {
       <p>{post.content}</p>
       <p>{post.createdAt}</p>
       <p>{post.updatedAt}</p>
+      <p>Likes: {likesArray.length}</p>
+
       <Footer />
     </div>
   ) : (

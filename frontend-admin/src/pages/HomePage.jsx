@@ -8,12 +8,14 @@ import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPosts() {
       const res = await axios.get("http://localhost:3000/posts");
       // console.log(res.data.posts);
       setPosts(res.data.posts);
+      setIsLoading(false);
     }
 
     fetchPosts();
@@ -27,6 +29,7 @@ const HomePage = () => {
         <button>Create Post</button>
       </Link>
 
+      {isLoading && <p>Loading...</p>}
       <div className="posts-container">
         {posts.map((post) => {
           return <PostCard key={post._id} post={post} />;
