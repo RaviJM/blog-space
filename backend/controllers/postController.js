@@ -9,8 +9,9 @@ exports.getAllPosts = async (req, res) => {
     //replace the author field's value with the username of the user [because the author is a user afterall]
     // and then selects specific fields
     const posts = await Post.find()
-      .populate("author", "username")
-      .select("title content createdAt likes");
+      .populate("author", "username email")
+      .select("title content createdAt likes")
+      .sort({ createdAt: -1 });
 
     res.status(200).json({ posts });
   } catch (err) {

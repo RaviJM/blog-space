@@ -10,8 +10,14 @@ const HomePage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    console.log("Hey");
-  }, [posts]);
+    async function fetchPosts() {
+      const res = await axios.get("http://localhost:3000/posts");
+      // console.log(res.data.posts);
+      setPosts(res.data.posts);
+    }
+
+    fetchPosts();
+  }, []);
 
   return (
     <div>
@@ -20,6 +26,12 @@ const HomePage = () => {
       <Link to="/homepage/createPost">
         <button>Create Post</button>
       </Link>
+
+      <div className="posts-container">
+        {posts.map((post) => {
+          return <PostCard key={post._id} post={post} />;
+        })}
+      </div>
       <Footer />
     </div>
   );
