@@ -4,31 +4,40 @@ import axios from "axios";
 import PostCard from "../components/postCard/PostCard";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     try {
-  //       const response = await axios.get("/api/posts");
-  //       setPosts(response.data.posts);
-  //     } catch (error) {
-  //       console.error("Error fetching posts:", error);
-  //     }
-  //   };
-  //   fetchPosts();
-  // }, []);
+  const stateType = "create"; //used for create post button
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const res = await axios.get("http://localhost:3000/posts");
+      // console.log(res.data.posts);
+      setPosts(res.data.posts);
+      setIsLoading(false);
+    }
+
+    fetchPosts();
+  }, []);
 
   return (
     <div>
       <Navbar />
-      <h2>Home</h2>
-      {/* <div>
-        {posts.map((post) => (
-          <PostCard key={post._id} post={post} />
-        ))}
-      </div> */}
+      <h2>Home Page</h2>
+
+      {isLoading && <p>Loading...</p>}
+
+      {posts && (
+        <div className="posts-container">
+          {posts.map((post) => {
+            return <PostCard key={post._id} post={post} />;
+          })}
+        </div>
+      )}
+
       <Footer />
     </div>
   );
