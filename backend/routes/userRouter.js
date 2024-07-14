@@ -6,6 +6,6 @@ const userController = require("../controllers/userController");
 userRouter.post("/signup", userController.signup);
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
-userRouter.get("/:userId", userController.getUserDetails); // later make this protected route
+userRouter.get("/:userId", userController.getUserDetails);
 
 module.exports = userRouter;

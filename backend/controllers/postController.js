@@ -110,6 +110,7 @@ exports.likePost = async (req, res) => {
     const { username } = req.body;
 
     const post = await Post.findById(postId);
+    let action = "";
 
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
@@ -117,14 +118,18 @@ exports.likePost = async (req, res) => {
 
     if (post.likes.get(username)) {
       post.likes.delete(username); //remove like if already liked
+      action = "removed";
     } else {
       post.likes.set(username, true); //add like if not already liked
+      action = "added";
     }
 
     // save the updated Post with modified likes field
     await post.save();
 
-    res.status(200).json({ message: "Post Liked" });
+    res
+      .status(200)
+      .json({ message: "Post Liked", action: action, likes: post.likes });
   } catch (err) {
     res
       .status(500)
