@@ -7,7 +7,7 @@ const Comment = require("../models/Comment");
 exports.createComment = async (req, res) => {
   try {
     const { content } = req.body;
-    const userId = req.user.userId;
+    const userId = req.user.userId; //provided by authMiddleware
     const postId = req.params.postId;
 
     const newComment = new Comment({
@@ -23,11 +23,12 @@ exports.createComment = async (req, res) => {
       $push: { comments: newComment._id },
     });
 
-    const allComments = await Comment.find({ postId: postId })
-      .populate("userId", "username")
-      .sort({ createdAt: -1 });
+    const createdComment = await Comment.findOne({
+      postId: postId,
+      _id: newComment._id,
+    }).populate("userId", "username");
 
-    res.status(201).json({ allComments });
+    res.status(201).json({ createdComment });
   } catch (err) {
     res
       .status(500)
@@ -81,11 +82,7 @@ exports.deleteComment = async (req, res) => {
       $pull: { comments: commentId },
     });
 
-    const allComments = await Comment.find({ postId: deletedComment.postId })
-      .populate("userId", "username")
-      .sort({ createdAt: -1 });
-
-    res.status(200).json({ allComments });
+    res.status(200).json({ message: "Comment deleted successfully" });
   } catch (err) {
     res
       .status(500)

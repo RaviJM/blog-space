@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 import { useNavigate } from "react-router-dom";
+import Comments from "../components/comments/Comments";
 
 const PostPage = () => {
   const { postId } = useParams();
@@ -144,7 +145,7 @@ const PostPage = () => {
             </button>
           </div>
 
-          <p>Likes: {likesArray.length}</p>
+          <Comments postId={postId} />
         </div>
       )}
 
