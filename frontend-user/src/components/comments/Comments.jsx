@@ -6,7 +6,6 @@ function Comments(props) {
   const [comment, setComment] = useState("");
   const [allCommentsArray, setAllCommentsArray] = useState([]);
   const navigate = useNavigate();
-
   const userId = localStorage.getItem("userId");
 
   const handleCommentFormSubmit = async (e) => {
@@ -73,10 +72,18 @@ function Comments(props) {
     }
   };
 
+  const handleUpdateComment = (commentId, comment) => {
+    const data = { commentId: commentId, comment: comment };
+    navigate("/comments/updateComment", {
+      state: data,
+    });
+  };
+
   const handleOnChange = (e) => {
     setComment(e.target.value);
   };
 
+  // used for fetching all comments
   useEffect(() => {
     async function fetchComments() {
       try {
@@ -114,9 +121,18 @@ function Comments(props) {
             <p>comment: {comment.content}</p>
             <p>created at: {comment.createdAt}</p>
             {userId === comment.userId._id && (
-              <button onClick={() => handleDeleteComment(comment._id)}>
-                Delete
-              </button>
+              <div>
+                <button
+                  onClick={() =>
+                    handleUpdateComment(comment._id, comment.content)
+                  }
+                >
+                  Update
+                </button>
+                <button onClick={() => handleDeleteComment(comment._id)}>
+                  Delete
+                </button>
+              </div>
             )}
             <p>
               ----------------------------------------------------------------

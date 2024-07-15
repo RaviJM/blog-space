@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 
-// sends all comments for the post (updated with the added one)
+// sends newly create comment for the post
 exports.createComment = async (req, res) => {
   try {
     const { content } = req.body;
@@ -36,7 +36,7 @@ exports.createComment = async (req, res) => {
   }
 };
 
-// sends all comments after updating the comment
+// sends a successful message and postId (to redirect the person to that post page)
 exports.updateComment = async (req, res) => {
   try {
     const commentId = req.params.commentId;
@@ -52,14 +52,11 @@ exports.updateComment = async (req, res) => {
       return res.status(404).json({ message: "Comment not found" });
     }
 
-    // find the postId from the comment (so that you can fetch all comments for that postId)
     const postId = updatedComment.postId;
 
-    const allComments = await Comment.find({ postId: postId })
-      .populate("userId", "username")
-      .sort({ createdAt: -1 });
-
-    res.status(200).json({ allComments });
+    res
+      .status(200)
+      .json({ message: "Comment Updated Successfully", postId: postId });
   } catch (err) {
     res
       .status(500)
@@ -67,6 +64,7 @@ exports.updateComment = async (req, res) => {
   }
 };
 
+// just sends successful message (frontend deletion for instantaneous display is handled separately in frontend)
 exports.deleteComment = async (req, res) => {
   try {
     const commentId = req.params.commentId;

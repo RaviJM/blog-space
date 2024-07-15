@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import PostPage from "./pages/PostPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import AboutPage from "./pages/AboutPage";
+import UpdateCommentPage from "./pages/UpdateCommentPage";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/posts/:postId" element={<PostPage />} />
           <Route path="/aboutpage" element={<AboutPage />} />
+          <Route
+            path="/comments/updateComment"
+            element={<UpdateCommentPage />}
+          />
         </Routes>
       </div>
     </Router>
