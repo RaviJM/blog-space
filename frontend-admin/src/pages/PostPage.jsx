@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+import Comments from "../components/comments/Comments";
 import { useNavigate } from "react-router-dom";
 
 const PostPage = () => {
@@ -12,9 +13,6 @@ const PostPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const stateType = "update"; //used for update post button
-
-  // const [comment, setComment] = useState("");
-  // const [comments, setComments] = useState([]);
 
   const [likesArray, setLikesArray] = useState([]);
 
@@ -86,29 +84,6 @@ const PostPage = () => {
     fetchPost();
   }, [postId, likesArray, post]);
 
-  // const handleLike = async () => {
-  //   try {
-  //     await axios.put(`/api/posts/likePost/${postId}`, { username: "user" }); // Replace 'user' with actual username
-  //     setPost({ ...post, likes: !post.likes });
-  //   } catch (error) {
-  //     console.error("Error liking post:", error);
-  //   }
-  // };
-
-  // const handleCommentSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post(
-  //       `/api/comments/createComment/${postId}`,
-  //       { content: comment }
-  //     );
-  //     setComments(response.data.allComments);
-  //     setComment("");
-  //   } catch (error) {
-  //     console.error("Error adding comment:", error);
-  //   }
-  // };
-
   return (
     <div>
       <Navbar />
@@ -123,6 +98,7 @@ const PostPage = () => {
           <p>{post.createdAt}</p>
           <p>{post.updatedAt}</p>
           <p>Likes: {likesArray.length}</p>
+          <Comments postId={postId} />
         </div>
       )}
 
