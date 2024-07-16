@@ -55,15 +55,19 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold mb-6">Login</h1>
+      <form
+        className="flex flex-col items-center w-full max-w-xs"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           name="username"
           value={form.username}
           onChange={handleChange}
           placeholder="Username"
+          className="mb-4 p-2 w-full border border-gray-300 rounded-md"
           required
         />
         <input
@@ -72,13 +76,22 @@ const LoginPage = () => {
           value={form.password}
           onChange={handleChange}
           placeholder="Password"
+          className="mb-4 p-2 w-full border border-gray-300 rounded-md"
           required
         />
-        <button type="submit">Login</button>
+        <button
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+          type="submit"
+        >
+          Login
+        </button>
       </form>
 
-      <p>
-        New user? <Link to="/signup">Signup</Link>
+      <p className="mt-4">
+        New user?{" "}
+        <Link to="/signup" className="text-blue-500 hover:underline">
+          Signup
+        </Link>
       </p>
     </div>
   );
