@@ -61,7 +61,7 @@ const Navbar = () => {
         <FaUserCircle size={30} onClick={handleProfileClick} />
 
         {showDropdown && (
-          <div className="dropdown">
+          <div>
             {isLoggedIn ? (
               <>
                 <p>Username: {userInfo.username}</p>
