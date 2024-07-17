@@ -43,8 +43,8 @@ const SignupPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-5xl font-bold mb-20">Blog-Space</h1>
-      <h1 className="text-3xl font-bold mb-10">Signup - Creator Portal</h1>
+      <h1 className="text-5xl font-bold mb-20">Blog-Space - Creator Portal</h1>
+      <h1 className="text-3xl font-bold mb-10">Signup</h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center w-full max-w-xs"
