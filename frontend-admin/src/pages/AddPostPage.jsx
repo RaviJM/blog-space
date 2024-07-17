@@ -104,42 +104,57 @@ const AddPostPage = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
 
-      {stateType === "create" ? (
-        <h1>Create Post Page</h1>
-      ) : (
-        <h1>Update Post Page</h1>
-      )}
+      <div className="flex flex-col flex-grow items-center justify-center bg-gray-100 p-8">
+        <div className="max-w-2xl w-full bg-white p-6 rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold mb-6 text-center">
+            {stateType === "create" ? "Create Post" : "Update Post"}
+          </h1>
 
-      <form onSubmit={handleAddPost}>
-        <label htmlFor="title">Post Title: </label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={form.title}
-          onChange={handleOnChange}
-          required
-        ></input>
-        <br></br>
-        <label htmlFor="content">Post Content: </label>
-        <textarea
-          type="text"
-          id="content"
-          name="content"
-          value={form.content}
-          onChange={handleOnChange}
-          required
-        ></textarea>
-        <br></br>
-        {stateType === "create" ? (
-          <button type="submit">Add Post</button>
-        ) : (
-          <button type="submit">Update Post</button>
-        )}
-      </form>
+          <form onSubmit={handleAddPost} className="space-y-4">
+            <div>
+              <label htmlFor="title" className="block text-lg font-medium">
+                Post Title:{" "}
+              </label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value={form.title}
+                onChange={handleOnChange}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              ></input>
+            </div>
+
+            <div>
+              <label htmlFor="content" className="block text-lg font-medium">
+                Post Content:{" "}
+              </label>
+              <textarea
+                type="text"
+                id="content"
+                name="content"
+                value={form.content}
+                onChange={handleOnChange}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              ></textarea>
+            </div>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                {stateType === "create" ? "Add Post" : "Update Post"}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
 
       <Footer />
     </div>
