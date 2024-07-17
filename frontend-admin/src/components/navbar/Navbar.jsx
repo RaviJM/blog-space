@@ -45,7 +45,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-gray-800 text-white">
+    <nav className="flex items-center justify-between p-4 bg-gray-800 text-white sticky top-0">
       <Link to="/homepage" className="flex items-center">
         <FaHome size={30} />
         <span className="text-xl font-bold">Home</span>
