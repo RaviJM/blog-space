@@ -1,3 +1,4 @@
+// src/components/navbar/Navbar.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
@@ -44,33 +45,58 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <Link to="/homepage">
-        <FaHome size={30} />
+    <nav className="flex items-center justify-between p-4 bg-gray-800 text-white">
+      <Link to="/homepage" className="flex items-center">
+        <FaHome size={30} className="mr-2" />
+        <span className="text-xl font-bold">Home</span>
       </Link>
-      <ul>
+      <ul className="flex space-x-4">
         <li>
-          <Link to="/homepage">Home</Link>
+          <Link to="/homepage" className="hover:text-gray-400">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/aboutpage">About</Link>
+          <Link to="/aboutpage" className="hover:text-gray-400">
+            About
+          </Link>
         </li>
       </ul>
 
-      <div className="profile">
-        <FaUserCircle size={30} onClick={handleProfileClick} />
+      <div className="relative">
+        <FaUserCircle
+          size={30}
+          onClick={handleProfileClick}
+          className="cursor-pointer"
+        />
 
         {showDropdown && (
-          <div>
+          <div className="absolute right-0 mt-2 p-1 w-60 bg-white text-black rounded-md shadow-lg py-2">
             {isLoggedIn ? (
               <>
-                <p>Username: {userInfo.username}</p>
-                <p>Email: {userInfo.email}</p>
-                <p>Account-type: {userInfo.role}</p>
-                <button onClick={handleLogout}>Logout</button>
+                <p className="py-1 px-3 text-gray-500 text-sm">
+                  <span className="text-black font-bold">Username: </span>
+                  {userInfo.username}
+                </p>
+                <p className="py-1 px-3 text-gray-500 text-sm">
+                  <span className="text-black font-bold">Email: </span>
+                  {userInfo.email}
+                </p>
+                <p className="py-1 px-3 text-gray-500 text-sm">
+                  <span className="text-black font-bold">Account-type: </span>
+                  {userInfo.role}
+                </p>
+                <div className="flex justify-end">
+                  <button
+                    onClick={handleLogout}
+                    className="bg-gray-300 border border-gray-400 px-4 py-2 hover:bg-gray-400"
+                  >
+                    Logout
+                  </button>
+                </div>
               </>
             ) : (
-              <p>Please log in</p>
+              <p className="px-4 py-2">Please log in</p>
             )}
           </div>
         )}
