@@ -85,23 +85,40 @@ const PostPage = () => {
   }, [postId, likesArray, post]);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-
-      {isLoading && <p>Loading...</p>}
-      {post && (
-        <div>
-          <button onClick={handleDeletePost}>Delete Post</button>
-          <button onClick={handleUpdatePost}>Update Post</button>
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-          <p>{post.createdAt}</p>
-          <p>{post.updatedAt}</p>
-          <p>Likes: {likesArray.length}</p>
-          <Comments postId={postId} />
-        </div>
-      )}
-
+      <div className="flex flex-col flex-grow items-center justify-center bg-gray-100 p-8">
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          post && (
+            <div className="max-w-2xl w-full bg-white p-6 rounded-lg shodow-lg">
+              <div className="flex justify-end space-x-2">
+                <button
+                  onClick={handleDeletePost}
+                  className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600"
+                >
+                  Delete Post
+                </button>
+                <button
+                  onClick={handleUpdatePost}
+                  className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                >
+                  Update Post
+                </button>
+              </div>
+              <h1 className="text-3xl font-bold mt-4 mb-2">{post.title}</h1>
+              <p className="text-gray-700 mb-4">{post.content}</p>
+              <p className="text-sm text-gray-500">{post.createdAt}</p>
+              <p className="text-sm text-gray-500">{post.updatedAt}</p>
+              <p className="text-sm text-gray-500 mt-2">
+                Likes: {likesArray.length}
+              </p>
+              <Comments postId={postId} />
+            </div>
+          )
+        )}
+      </div>
       <Footer />
     </div>
   );
