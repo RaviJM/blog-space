@@ -95,7 +95,7 @@ function Comments(props) {
 
   return (
     <div className="p-4 bg-gray-100 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Comments</h2>
+      <h1 className="text-2xl font-semibold mb-4">Comments</h1>
       <form
         onSubmit={handleCommentFormSubmit}
         className="mb-4 flex flex-col gap-2"
@@ -155,6 +155,7 @@ function Comments(props) {
             </div>
 
             <p>{comment.content}</p>
+
             <p className="text-gray-500 text-sm mt-2">
               {new Date(comment.createdAt).toLocaleString()}
             </p>
