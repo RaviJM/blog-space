@@ -31,9 +31,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <h1 className="text-5xl font-bold mb-20">Blog-Space - User Portal</h1>
+      <h1 className="text-3xl font-bold mb-6">Login</h1>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center w-full max-w-xs"
+      >
         <input
           type="text"
           name="username"
@@ -41,6 +45,7 @@ const LoginPage = () => {
           onChange={handleChange}
           placeholder="Username"
           required
+          className="mb-4 p-2 w-full border border-gray-300 rounded-md"
         />
         <input
           type="password"
@@ -49,16 +54,28 @@ const LoginPage = () => {
           onChange={handleChange}
           placeholder="Password"
           required
+          className="mb-4 p-2 w-full border border-gray-300 rounded-md"
         />
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+        >
+          Login
+        </button>
       </form>
 
-      <p>
-        New user? <Link to="/signup">Signup</Link>
+      <p className="mt-4">
+        New user?{" "}
+        <Link to="/signup" className="text-blue-500 hover:underline">
+          Signup
+        </Link>
       </p>
       <p>Or</p>
       <p>
-        Visit as Guest? <Link to="/homepage">Guest</Link>
+        Visit as Guest?{" "}
+        <Link to="/homepage" className="text-blue-500 hover:underline">
+          Guest
+        </Link>
       </p>
     </div>
   );
