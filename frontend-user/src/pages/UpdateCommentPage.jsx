@@ -56,18 +56,40 @@ function UpdateCommentPage() {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <h1>Update Comment Page</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="comment"
-          id="comment"
-          onChange={handleOnChange}
-          value={comment}
-        ></input>
-        <button type="submit">Update</button>
-      </form>
+      <div className="flex flex-col items-center justify-center flex-grow bg-gray-100 p-8">
+        <h1 className="text-3xl font-bold mb-4">Update Comment Page</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg"
+        >
+          <div className="mb-4">
+            <label
+              htmlFor="comment"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Comment
+            </label>
+
+            <input
+              name="comment"
+              id="comment"
+              onChange={handleOnChange}
+              value={comment}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            ></input>
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
       <Footer />
     </div>
   );
