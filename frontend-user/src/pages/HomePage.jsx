@@ -24,20 +24,19 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <h2>Home Page</h2>
+      <div className="flex flex-col items-center justify-center flex-grow bg-gray-100 p-4">
+        {isLoading && <p>Loading...</p>}
 
-      {isLoading && <p>Loading...</p>}
-
-      {posts && (
-        <div className="posts-container">
-          {posts.map((post) => {
-            return <PostCard key={post._id} post={post} />;
-          })}
-        </div>
-      )}
-
+        {posts && (
+          <div>
+            {posts.map((post) => {
+              return <PostCard key={post._id} post={post} />;
+            })}
+          </div>
+        )}
+      </div>
       <Footer />
     </div>
   );
