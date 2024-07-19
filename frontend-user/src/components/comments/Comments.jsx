@@ -26,7 +26,7 @@ function Comments(props) {
       const content = comment;
 
       const res = await axios.post(
-        `http://localhost:3000/comments/createComment/${postId}`,
+        `https://blog-space-backend-0s0v.onrender.com/comments/createComment/${postId}`,
         { content },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -57,7 +57,7 @@ function Comments(props) {
       }
 
       const res = await axios.delete(
-        `http://localhost:3000/comments/deleteComment/${commentId}`,
+        `https://blog-space-backend-0s0v.onrender.com/comments/deleteComment/${commentId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -88,7 +88,9 @@ function Comments(props) {
     async function fetchComments() {
       try {
         const postId = props.postId;
-        const res = await axios.get(`http://localhost:3000/comments/${postId}`);
+        const res = await axios.get(
+          `https://blog-space-backend-0s0v.onrender.com/comments/${postId}`
+        );
 
         setAllCommentsArray(res.data.allComments);
       } catch (err) {

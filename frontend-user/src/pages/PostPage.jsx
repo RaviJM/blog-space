@@ -26,11 +26,13 @@ const PostPage = () => {
         return;
       }
 
-      const res0 = await axios.get(`http://localhost:3000/user/${userId}`);
+      const res0 = await axios.get(
+        `https://blog-space-backend-0s0v.onrender.com/user/${userId}`
+      );
       const username = res0.data.userDetails.username;
 
       const res = await axios.put(
-        `http://localhost:3000/posts/likePost/${postId}`,
+        `https://blog-space-backend-0s0v.onrender.com/posts/likePost/${postId}`,
         { username: username },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -51,7 +53,7 @@ const PostPage = () => {
     const fetchPost = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/posts/${postId}`
+          `https://blog-space-backend-0s0v.onrender.com/posts/${postId}`
         );
         setPost(response.data);
         setIsLoading(false);
@@ -71,7 +73,9 @@ const PostPage = () => {
       const userId = localStorage.getItem("userId");
       const fetchUser = async () => {
         try {
-          const res0 = await axios.get(`http://localhost:3000/user/${userId}`);
+          const res0 = await axios.get(
+            `https://blog-space-backend-0s0v.onrender.com/user/${userId}`
+          );
           const username = res0.data.userDetails.username;
 
           if (username in likesObject) {

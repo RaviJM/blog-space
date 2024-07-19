@@ -50,7 +50,7 @@ const AddPostPage = () => {
       formToSubmit.author = userId;
 
       const res = await axios.post(
-        "http://localhost:3000/posts/createPost",
+        "https://blog-space-backend-0s0v.onrender.com/posts/createPost",
         formToSubmit,
         {
           headers: {
@@ -80,7 +80,7 @@ const AddPostPage = () => {
       const postId = stateType.postId;
 
       const res = await axios.put(
-        `http://localhost:3000/posts/updatePost/${postId}`,
+        `https://blog-space-backend-0s0v.onrender.com/posts/updatePost/${postId}`,
         formToSubmit,
         {
           headers: {

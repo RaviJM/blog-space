@@ -26,7 +26,10 @@ const SignupPage = () => {
       return alert("Passwords do not match");
     }
     try {
-      const res = await axios.post("http://localhost:3000/user/signup", form);
+      const res = await axios.post(
+        "https://blog-space-backend-0s0v.onrender.com/user/signup",
+        form
+      );
 
       if (res.status === 201) {
         alert("Signup Successful");

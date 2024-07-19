@@ -14,7 +14,9 @@ const HomePage = () => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const res = await axios.get("http://localhost:3000/posts");
+      const res = await axios.get(
+        "https://blog-space-backend-0s0v.onrender.com/posts"
+      );
       // console.log(res.data.posts);
       setPosts(res.data.posts);
       setIsLoading(false);

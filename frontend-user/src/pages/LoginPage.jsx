@@ -15,7 +15,10 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/user/login", form);
+      const res = await axios.post(
+        "https://blog-space-backend-0s0v.onrender.com/user/login",
+        form
+      );
 
       //   save the JWT token from res.data into local storage
       localStorage.setItem("token", res.data.token);

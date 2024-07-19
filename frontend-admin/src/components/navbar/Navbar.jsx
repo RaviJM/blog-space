@@ -17,7 +17,7 @@ const Navbar = () => {
       setIsLoggedIn(true);
       const userId = localStorage.getItem("userId");
       axios
-        .get(`http://localhost:3000/user/${userId}`)
+        .get(`https://blog-space-backend-0s0v.onrender.com/user/${userId}`)
         .then((response) => {
           setUserInfo(response.data.userDetails);
         })

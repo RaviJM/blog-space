@@ -33,7 +33,7 @@ function UpdateCommentPage() {
         return;
       }
       const res = await axios.put(
-        `http://localhost:3000/comments/updateComment/${commentId}`,
+        `https://blog-space-backend-0s0v.onrender.com/comments/updateComment/${commentId}`,
         { content },
         { headers: { Authorization: `Bearer ${token}` } }
       );

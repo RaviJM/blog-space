@@ -32,7 +32,7 @@ const PostPage = () => {
     const cnf = confirm("Are you sure you want to delete the post?");
     if (cnf) {
       const res = await axios.delete(
-        `http://localhost:3000/posts/deletePost/${postId}`,
+        `https://blog-space-backend-0s0v.onrender.com/posts/deletePost/${postId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -63,7 +63,7 @@ const PostPage = () => {
     const fetchPost = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/posts/${postId}`
+          `https://blog-space-backend-0s0v.onrender.com/posts/${postId}`
         );
         setPost(response.data);
         setIsLoading(false);
@@ -74,9 +74,6 @@ const PostPage = () => {
           const likesArray = Object.keys(likesObject);
           setLikesArray(likesArray);
         }
-
-        // const commentsResponse = await axios.get(`/api/comments/${postId}`);
-        // setComments(commentsResponse.data.allComments);
       } catch (error) {
         console.error("Error fetching post:", error);
       }
