@@ -12,10 +12,14 @@ const HomePage = () => {
 
   const stateType = "create"; //used for create post button
 
+  // get userId and token of admin
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     async function fetchPosts() {
       const res = await axios.get(
-        "https://blog-space-backend-0s0v.onrender.com/posts"
+        `https://blog-space-backend-0s0v.onrender.com/posts/admin/${userId}`
       );
       // console.log(res.data.posts);
       setPosts(res.data.posts);

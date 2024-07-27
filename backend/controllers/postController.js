@@ -136,3 +136,18 @@ exports.likePost = async (req, res) => {
       .json({ message: `Error while adding like to post: ${err.message}` });
   }
 };
+
+exports.getPostOfAdmin = async (req, res) => {
+  try {
+    const posts = await Post.find({ author: req.params.userId })
+      .populate("author", "username email")
+      .select("title content createdAt likes")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({ posts });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: `Error while fetching posts of admin: ${err.message}` });
+  }
+};
