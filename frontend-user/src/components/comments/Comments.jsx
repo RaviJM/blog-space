@@ -160,7 +160,7 @@ function Comments(props) {
               <p className="font-semibold">{comment.userId.username}</p>
             </div>
 
-            <p>comment: {comment.content}</p>
+            <p>{comment.content}</p>
 
             <p className="text-gray-500 text-sm mt-2">
               {new Date(comment.createdAt).toLocaleString()}
