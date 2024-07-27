@@ -1,8 +1,13 @@
 # Blog-Space
 
-Website is live on Render.com here : https://blog-space-frontend-user.onrender.com/
+Website is live on Render.com here : 
 
-Blog-Space is a comprehensive blogging platform designed to allow users to create, view, and interact with blog posts. The platform is built with a MERN stack and features two separate frontends: one for general users and one for content creators (admins).
+User Portal - https://blog-space-frontend-user.onrender.com/
+
+Admin Portal - https://blog-space-frontend-admin.onrender.com/
+
+
+Blog-Space is a blogging platform designed to allow users to create, view, and interact with blog posts. The platform is built with a MERN stack and features two separate frontends: one for general users and one for content creators (admins).
 
 ## Features
 
