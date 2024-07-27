@@ -12,11 +12,12 @@ const HomePage = () => {
 
   const stateType = "create"; //used for create post button
 
+  // get userId and token of admin
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     async function fetchPosts() {
-      const userId = localStorage.getItem("userId");
-      const token = localStorage.getItem("token");
-
       const res = await axios.get(
         `http://localhost:3000/posts/admin/${userId}`
       );
