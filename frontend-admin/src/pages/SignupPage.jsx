@@ -27,7 +27,7 @@ const SignupPage = () => {
     }
     try {
       const res = await axios.post(
-        "https://blog-space-backend-0s0v.onrender.com/signup",
+        "https://blog-space-backend-0s0v.onrender.com/user/signup",
         form
       );
 
