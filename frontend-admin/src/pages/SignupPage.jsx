@@ -40,7 +40,7 @@ const SignupPage = () => {
       }
     } catch (error) {
       console.error("Signup failed:", error);
-      alert("User already exists! Try another username");
+      alert("Server Error");
     }
   };
 
