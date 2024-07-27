@@ -14,7 +14,12 @@ const HomePage = () => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const res = await axios.get("http://localhost:3000/posts");
+      const userId = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+
+      const res = await axios.get(
+        `http://localhost:3000/posts/admin/${userId}`
+      );
       // console.log(res.data.posts);
       setPosts(res.data.posts);
       setIsLoading(false);
